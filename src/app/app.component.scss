@@ -1,25 +1,4 @@
 .wrapper {
   width: 100vw;
   height: 100vh;
-  .toolbar {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
-
-  .main-content {
-    display: flex;
-
-    .menu {
-      width: 200px;
-      border: 1px solid green;
-    }
-
-    .content {
-      border: 1px solid rgb(18, 95, 167);
-    }
-  }
 }

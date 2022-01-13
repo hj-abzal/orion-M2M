@@ -24,7 +24,8 @@
       "dom"
     ],
     "paths": {
-      "styles": ["app/_content"]
+      "styles": ["app/_content"],
+      "@modules/*": ["app/modules/*"],
     }
   },
   "angularCompilerOptions": {
