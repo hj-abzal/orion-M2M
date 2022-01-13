@@ -1,20 +1,25 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
   .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     height: 60px;
     display: flex;
     align-items: center;
     background-color: #1976d2;
     color: white;
     font-weight: 600;
-    img {
-            background-color: rgb(255, 255, 255);
-            height: 40px;
-    }
   }
 
-  .toolbar img {
-    margin: 0 16px;
+  .main-content {
+    display: flex;
+
+    .menu {
+      width: 200px;
+      border: 1px solid green;
+    }
+
+    .content {
+      border: 1px solid rgb(18, 95, 167);
+    }
   }
+}

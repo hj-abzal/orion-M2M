@@ -1,4 +1,13 @@
-<div class="toolbar">
-  <img alt="Angular Logo" src="http://orion-m2m.com/static/images/glogo.png" />
+<div class="wrapper">
+  <div class="toolbar">
+   <app-toolbar></app-toolbar>
+  </div>
+  <div class="main-content">
+    <div class="menu">
+      <app-main-menu></app-main-menu>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
-<router-outlet></router-outlet>
