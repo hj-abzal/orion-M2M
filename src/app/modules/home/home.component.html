@@ -1,12 +1,63 @@
-<app-top-bar></app-top-bar>
-<div class="main-content">
-  
-    <div class="navbar">
-        <app-nav-bar></app-nav-bar>
-    </div>
+<div class="container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button class="example-icon" (click)="snav.toggle()">
+            <mat-icon color="primary">menu</mat-icon>
+        </button>
+        <img src="http://orion-m2m.com/static/images/glogo.png" alt="">
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon color="primary">favorite</mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon color="primary">share</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56" >
+            <div class="side-nav">
+                <h2>Main menu</h2>
+                <ul>
+                    <li>
+                        <a href="">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </mat-sidenav>
 
-    <div class="content">
-        <mat-grid-list cols="3" rowHeight="400px">
+        <mat-sidenav-content class="mat-main-content">
+            <mat-grid-list #grid [cols]="cols" rowHeight="400" gutterSize="20px">
+                <mat-grid-tile *ngFor="let movie of movies" [colspan]=1 [rowspan]=1>
+                    <div class="card">
+                        <mat-card class="mat-card">
+                            <mat-card-title>{{ movie.title }}</mat-card-title>
+                            <mat-card-subtitle>{{movie.release_date}}</mat-card-subtitle>
+                            <mat-card-subtitle>{{movie.director}}</mat-card-subtitle>
+                            <mat-card-content>
+                                <p>{{movie.opening_crawl}}</p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>click for more details</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+
+
+
+<!-- <div class="main-content"> -->
+
+<!-- <div class="navbar">
+        <app-nav-bar></app-nav-bar>
+    </div> -->
+
+<!-- <div class="content">
+        <mat-grid-list #grid [cols]="cols" rowHeight="400" gutterSize="20px">
             <mat-grid-tile *ngFor="let movie of movies" [colspan]=1 [rowspan]=1>
                 <div class="card">
                     <mat-card>
@@ -23,5 +74,5 @@
                 </div>
             </mat-grid-tile>
         </mat-grid-list>
-    </div>
-</div>
+    </div> -->
+<!-- </div> -->

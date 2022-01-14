@@ -4,20 +4,43 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url("https://images.pexels.com/photos/4502112/pexels-photo-4502112.jpeg?cs=srgb&dl=pexels-engin-akyurt-4502112.jpg&fm=jpg");
+  background-position: center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  font-family: "Noto Sans", sans-serif;
+  filter: brightness(1.1);
+
+  .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1976d20d;
+    border-radius: 3px;
+    padding: 70px 100px;
+  }
 
   h2 {
     font-size: 40px;
     padding-bottom: 50px;
+    color: #ffffff;
+    text-align: center;
   }
 }
 .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   .form-group {
-      padding: 15px 0;
+    padding: 15px 0;
+
+    input {
+      background-color: ivory;
+    }
   }
   button {
-      margin-top: 15px;
+    margin-top: 15px;
   }
-
 }
