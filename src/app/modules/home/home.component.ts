@@ -1,3 +1,5 @@
+import { IMovie } from './../../interfaces/movie';
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  movies: IMovie[];
+  constructor(private dataService: DataService) { }
+  
   ngOnInit(): void {
+    this.dataService.getMovies()
+        .subscribe(data => this.movies = data)
   }
 
 }

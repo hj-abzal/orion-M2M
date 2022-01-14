@@ -1,7 +1,7 @@
-import { HomeModule } from './modules/home';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginModule, HomeModule } from './modules';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeModule
+    HttpClientModule,
+    HomeModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

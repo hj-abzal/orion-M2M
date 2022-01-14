@@ -29,10 +29,10 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/app/_content/styles.scss"
+              "src/app/content/styles.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/app/_content"]
+              "includePaths": ["src/app/content"]
             },
             "scripts": []
           },
@@ -98,10 +98,10 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/app/_content/styles.scss"
+              "src/app/content/styles.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/app/_content"]
+              "includePaths": ["src/app/content"]
             },
             "scripts": []
           }
