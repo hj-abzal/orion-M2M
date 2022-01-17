@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { LoginModule, HomeModule } from './modules';
+import { LoginModule, HomeModule, MovieModule } from './modules';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     HttpClientModule,
     HomeModule,
-    LoginModule
+    LoginModule,
+    MovieModule
   ],
   providers: [],
   bootstrap: [AppComponent]

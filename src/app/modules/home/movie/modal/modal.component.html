@@ -1,0 +1,12 @@
+<div *ngFor="let entry of modalData | keyvalue">
+    <div *ngIf="modalData[entry.key]">
+        <div *ngFor="let title of titles[entry.key]">
+            <div>
+                <b>{{title}}:</b>
+                <p>{{modalData[entry.key][title]}}</p>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>

@@ -1,4 +1,4 @@
-import { IMovie, GetMovies } from './../interfaces/movie';
+import { ICharacter, IMovie, GetMovies, IPlanet, IStarship } from 'app/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,13 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getMovies() {
-    return this.http.get<GetMovies>(this.url).pipe(map(data => data.results.sort( (a, b) => a.episode_id - b.episode_id)))
+    return this.http.get<GetMovies>(this.url).pipe(map(data => data.results))
+  }
+
+  getMovieById(id: number) {
+    return this.http.get<IMovie>(`https://swapi.dev/api/films/${id}`)
+  }
+  getDetails(url: string) {
+    return this.http.get<ICharacter | IPlanet | IStarship>(url)
   }
 }

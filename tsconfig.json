@@ -19,19 +19,16 @@
     "strictPropertyInitialization": false,
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "paths": {
-      "styles": ["app/_content"],
-      "@modules/*": ["app/modules/*"],
+      "@styles": ["app/content"],
+      "@modules/*": ["app/modules/*"]
     }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
+    "strictTemplates": true
   }
 }

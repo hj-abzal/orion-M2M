@@ -1,0 +1,5 @@
+export * from './character'
+export * from './movie'
+export * from './table'
+export * from './planets'
+export * from './starship'

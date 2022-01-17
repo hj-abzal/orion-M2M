@@ -1,4 +1,4 @@
-import { IMovie } from './../../interfaces/movie';
+import { IMovie } from 'app/interfaces';
 import { DataService } from './../../services/data.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MediaMatcher } from '@angular/cdk/layout';
