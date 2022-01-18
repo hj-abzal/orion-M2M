@@ -1,4 +1,6 @@
-import { HttpClientModule } from '@angular/common/http';
+import { ApiInterceptor } from './helpers/api.interceptor';
+import { DataService } from 'app/services/data.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginModule, HomeModule, MovieModule } from './modules';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginModule,
     MovieModule
   ],
-  providers: [],
+  providers: [
+    DataService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
