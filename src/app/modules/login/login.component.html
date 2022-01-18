@@ -1,18 +1,29 @@
 <div class="wrapper">
     <div class="content">
         <h2>Login</h2>
-        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <div for="username">Username</div>
-                <input type="text" formControlName="username" class="form-control" />
-            </div>
-            <div class="form-group">
-                <div for="password">Password</div>
-                <input type="password" formControlName="password" class="form-control" />
-            </div>
-            <button [disabled]="loading">
-                Login
-            </button>
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" [errorStateMatcher]="emailMatcher"
+                    placeholder="Ex. pat@example.com">
+                <mat-error>
+                    Please enter a valid email address
+                </mat-error>
+              
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input minlength="7" type="password" matInput formControlName="password"
+                    [errorStateMatcher]="passwordMatcher">
+                <mat-error>
+                    Should contain atleast 7 chars!
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" >Login</button>
         </form>
     </div>
 </div>

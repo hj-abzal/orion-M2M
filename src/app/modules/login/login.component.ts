@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { AuthenticationService } from 'app/services/authentication.service';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 
 @Component({
   selector: 'app-login',
@@ -9,39 +18,61 @@ import { AuthenticationService } from 'app/services/authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
+  form: FormGroup;
+  public loginInvalid: boolean;
+  private formSubmitAttempt: boolean;
+  private returnUrl: string;
+
+
+
+  emailMatcher = new MyErrorStateMatcher();
+  passwordMatcher = new MyErrorStateMatcher();
+
+
+
+  
+
+
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
   ) { }
 
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+  async ngOnInit() {
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+    this.form = this.fb.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(7)])
     });
 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    const loggedUser = this.authenticationService.checkAuthenticated()
+    if (loggedUser.length > 0) {
+      this.router.navigate([this.returnUrl]);
+    }
   }
-  get f() { return this.loginForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
+    this.loginInvalid = false;
+    this.formSubmitAttempt = false;
+    if (this.form.valid) {
+      try {
+        const username = this.form.get('email')?.value;
+        const password = this.form.get('password')?.value;
+        const loggedUser = this.authenticationService.login(username, password);
+        if (loggedUser) {
+          this.router.navigate([this.returnUrl]);
+        }
+      } catch (err) {
+        this.loginInvalid = true;
+      }
+    } else {
+      this.formSubmitAttempt = true;
     }
-
-    this.loading = true;
-    //@ts-ignore
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    
   }
 }

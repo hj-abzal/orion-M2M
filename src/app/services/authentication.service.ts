@@ -1,39 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from 'app/models';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private curruntUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
 
-  constructor() { 
-    //@ts-ignore
-    this.curruntUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.curruntUserSubject.asObservable();
+
+  constructor(private router: Router) { 
   }
 
-  public get currentUserValue(): User {
-    return this.curruntUserSubject.value
+
+  checkAuthenticated() {
+    const authenticated = JSON.parse(localStorage.getItem('currentUser') || '{}') 
+    return authenticated;
   }
+
 
   login(login: string, password: string) {
-    const user = {login, password}
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicGVybWlzc2lvbnMiOjU4NzI1Nzh9.KfQtoH4rGYdGXP5I7l-po1AmemzuxcuQJ-6AR7QrRpE'
+    const user = {login, password, token}
     localStorage.setItem('currentUser', JSON.stringify(user));
-    this.curruntUserSubject.next(user)
-    console.log(user);
-    
-    return user;
-    
+    return token;
   }
 
   logout() {
     localStorage.removeItem('currentUser');
-    //@ts-ignore
-    this.curruntUserSubject.next(null);
+    this.router.navigate(['login'])
   }
 }

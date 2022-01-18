@@ -1,16 +1,15 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
-        <button mat-icon-button class="example-icon" (click)="snav.toggle()">
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="snav.toggle()">
             <mat-icon color="primary">menu</mat-icon>
         </button>
         <img src="http://orion-m2m.com/static/images/glogo.png" alt="">
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-            <mat-icon color="primary">favorite</mat-icon>
+        <h4 class="userName">{{userName}}</h4>
+        <button (click)="logout()">
+            <mat-icon color="primary">logout</mat-icon>
         </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon color="primary">share</mat-icon>
-        </button>
+       
     </mat-toolbar>
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
