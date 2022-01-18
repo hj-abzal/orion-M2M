@@ -29,7 +29,6 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.modalData = this.data.$event
     this.titles = this.data.titles
-    console.log(this.data);
     
   }
   closeModal() {

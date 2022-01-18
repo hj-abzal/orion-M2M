@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <div class="header">
+        <h2>{{tableTitle}}</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let title of titles" (click)="title !== 'name' || sortByName()">
+                    <div [ngClass]="{'name': title === 'name'}">
+                        {{title}}
+                        <div *ngIf="title === 'name'">
+                            <div *ngIf="sortStatus === 'A-Z'">▼</div>
+                            <div *ngIf="sortStatus === 'Z-A'">▲</div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td (click)="openModalComponent(item)" *ngFor="let title of titles">
+                    <div *ngIf="title === 'created'">
+                        {{item[title] | date: 'short'}}
+                    </div>
+                    <div *ngIf="title !== 'created'">
+                        {{item[title]}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

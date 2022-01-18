@@ -1,7 +1,11 @@
 <div *ngFor="let entry of modalData | keyvalue">
     <div *ngIf="modalData[entry.key]">
         <div *ngFor="let title of titles[entry.key]">
-            <div>
+            <div *ngIf="title === 'created'">
+                <b>{{title}}:</b>
+                <p>{{modalData[entry.key][title] | date: 'short'}}</p>
+            </div>
+            <div *ngIf="title !== 'created'">
                 <b>{{title}}:</b>
                 <p>{{modalData[entry.key][title]}}</p>
             </div>

@@ -4,7 +4,7 @@ import { ICharacter } from 'app/interfaces/character';
 import { IMovie, ITable, IPlanet, IStarship } from 'app/interfaces';
 import { DataService } from 'app/services/data.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalComponent } from '@modules/home/movie/modal/modal.component';
+import { ModalComponent } from '@modules/movie/modal/modal.component';
 import { TableDatatTransferType } from './table/table.component';
 
 
@@ -31,11 +31,18 @@ export class MovieComponent implements OnInit {
     { tableTitle: 'characters', titles: this.chatactersTitles, data: this.characters },
     { tableTitle: 'planets', titles: this.planetsTitles, data: this.planets },
   ]
+  _data: any = {
+    'starships': [],
+    'characters': [],
+    'planets': [],
+  }
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
     public matDialog: MatDialog
   ) { }
+  
   openModal($event: TableDatatTransferType) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -53,7 +60,6 @@ export class MovieComponent implements OnInit {
     this.matDialog.open(ModalComponent, dialogConfig);
   }
 
-
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const movieId = Number(routeParams.get('id'));
@@ -62,11 +68,11 @@ export class MovieComponent implements OnInit {
       .subscribe(data => {
         this.movie = data
 
-
         data.starships.map(url => {
           this.dataService.getDetails(url)
             .subscribe(res => {
               this.starships.push(res)
+              this._data['starships'].push(res)
             })
         })
 
@@ -74,6 +80,7 @@ export class MovieComponent implements OnInit {
           this.dataService.getDetails(url)
             .subscribe(res => {
               this.characters.push(res)
+              this._data['characters'].push(res)
             })
         })
 
@@ -81,6 +88,7 @@ export class MovieComponent implements OnInit {
           this.dataService.getDetails(url)
             .subscribe(res => {
               this.planets.push(res)
+              this._data['planets'].push(res)
             })
         })
 

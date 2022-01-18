@@ -7,10 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { AllMoviesComponent } from './all-movies/all-movies.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    AllMoviesComponent,
   ],
   imports: [
     MatGridListModule,

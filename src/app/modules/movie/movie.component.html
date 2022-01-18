@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <mat-card class="mat-card">
+        <mat-card-title>{{ movie?.title }}</mat-card-title>
+        <mat-card-subtitle>{{movie?.release_date | date:'shortDate'}}</mat-card-subtitle>
+        <mat-card-content>
+            <p>{{movie?.opening_crawl}}</p>
+        </mat-card-content>
+    </mat-card>
+    <div class="tables">
+        <div class="table" *ngFor="let table of tables">
+            <app-table (messageEvent)="openModal($event)" [tableTitle]='table.tableTitle' [titles]="table.titles"
+                [data]="table.data" [_data]="_data"></app-table>
+        </div>
+    </div>
+</div>

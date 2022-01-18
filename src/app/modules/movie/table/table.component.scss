@@ -1,8 +1,7 @@
 @use "styles";
-
+table,
 .wrapper {
-  border: 2px solid styles.$mainColor;
-  width: 610px;
+  width: 600px;
 
   @media screen and (max-width: 640px) {
     width: 500px;
@@ -10,6 +9,11 @@
   @media screen and (max-width: 470px) {
     width: 400px;
   }
+}
+
+.wrapper {
+  border: 2px solid styles.$mainColor;
+
   .header {
     background-color: styles.$mainColor;
     h2 {
@@ -58,4 +62,9 @@ th {
 
 td {
   height: 15px;
+}
+
+.name {
+  cursor: pointer;
+  display: flex;
 }
