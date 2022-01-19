@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  url = 'https://swapi.dev/api/films'
+  url = 'https://swapi.dev/api/films/'
   constructor(private http: HttpClient) { }
 
   getMovies() {
@@ -14,7 +14,7 @@ export class DataService {
   }
 
   getMovieById(id: number) {
-    return this.http.get<IMovie>(`https://swapi.dev/api/films/${id}`)
+    return this.http.get<IMovie>(`${this.url} + ${id}`)
   }
   getDetails(url: string) {
     return this.http.get<ICharacter | IPlanet | IStarship>(url)

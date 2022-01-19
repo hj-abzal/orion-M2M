@@ -1,16 +1,18 @@
-<div *ngFor="let entry of modalData | keyvalue">
-    <div *ngIf="modalData[entry.key]">
-        <div *ngFor="let title of titles[entry.key]">
-            <div *ngIf="title === 'created'">
-                <b>{{title}}:</b>
-                <p>{{modalData[entry.key][title] | date: 'short'}}</p>
+<div class="wrapper">
+    <div *ngFor="let entry of modalData | keyvalue">
+        <div *ngIf="modalData[entry.key]">
+            <div *ngFor="let title of titles[entry.key]">
+                <div class="field" *ngIf="title === 'created'">
+                    <b>{{title}}:</b>
+                    <p>{{modalData[entry.key][title] | date: 'short'}}</p>
+                </div>
+                <div class="field" *ngIf="title !== 'created'">
+                    <b>{{title}}:</b>
+                    <p>{{modalData[entry.key][title]}}</p>
+                </div>
+                <hr>
             </div>
-            <div *ngIf="title !== 'created'">
-                <b>{{title}}:</b>
-                <p>{{modalData[entry.key][title]}}</p>
-            </div>
-            <hr>
         </div>
     </div>
+    <button mat-raised-button color="primary" (click)="closeModal()">Go back</button>
 </div>
-<button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
