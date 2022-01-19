@@ -1,9 +1,9 @@
-import { IMovie } from 'app/interfaces';
-import { DataService } from './../../services/data.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'app/services/authentication.service';
+import {IMovie} from 'app/interfaces';
+import {DataService} from 'app/services/data.service';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AuthenticationService} from 'app/services/authentication.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,16 +14,18 @@ export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   movies: IMovie[];
+
   constructor(
     private dataService: DataService,
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private authenticationService: AuthenticationService,
-  ) { 
+  ) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+
   ngOnInit(): void {
     const user: any = this.authenticationService.checkAuthenticated()
     if (user) {
