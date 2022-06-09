@@ -31,5 +31,9 @@
     @media screen and (max-width: 1200px) {
       grid-template-columns: 1fr;
     }
+
+    .table {
+      padding: 5px;
+    }
   }
 }
